@@ -11,8 +11,6 @@
 #include <filesystem>
 using namespace std;
 
-//typedef void (*fptr)();
-
 class cgame{
 	public:
     	SDL_Window* window = NULL;
@@ -176,11 +174,6 @@ class Entity{
 		int vely = 0;
 		int accx = 0;
 		int accy = 0;
-
-		/*int top = 0;
-		int left = 0;
-		int bottom = 0;
-		int right = 0;*/
 
 		int width = 0;
 		int height = 0; 
@@ -378,9 +371,9 @@ int main(){
     	printf("Failed to initialize. Quiting process.\n");
   	}
   	else{
-    	string path = "c++/media/1.jpg";
+    	string path = "1.jpg";
     	Game.background = Game.loadTexture(path);
-    	Game.loadFont("c++/media/Sans.ttf", 36);
+    	Game.loadFont("Sans.ttf", 36);
     	int mX = 0;
     	int mY = 0;
 
@@ -412,7 +405,7 @@ int main(){
       		while(SDL_PollEvent(&e)){
       			SDL_GetMouseState(&mX, &mY);
       			if(b1.handle(&e, mX, mY)){
-      				system("python3 .customapps/App.py");
+      				//put any command you want to excute on the press of the button here
       			}
         		switch(e.type){
           			case SDL_QUIT:
