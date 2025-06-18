@@ -181,10 +181,10 @@ class Entity{
 		SDL_Rect hbox;
 		vector<int> colour = {0, 0, 0};
 
-		cgame master;
+		cgame* master;
 
 		Entity(cgame* gameptr){
-			master = *gameptr;
+			master = gameptr;
 		}
 
 		void setSizePos(int x, int y, int w, int h){
@@ -212,9 +212,9 @@ class Entity{
 		void draw(){
 			hbox.x = leftx;
 			hbox.y = topy;
-			SDL_SetRenderDrawColor(master.renderer, colour[0], colour[1], colour[2], 0xFF);
-	        SDL_RenderFillRect(master.renderer, &hbox);
-			//master.drawRect(1, cenx - width/2, ceny - height/2, cenx + width/2, ceny + height/2, red, green, blue);
+			SDL_SetRenderDrawColor((*master).renderer, colour[0], colour[1], colour[2], 0xFF);
+	        SDL_RenderFillRect((*master).renderer, &hbox);
+			//(*master).drawRect(1, cenx - width/2, ceny - height/2, cenx + width/2, ceny + height/2, red, green, blue);
 		}
 
 		void update(){
@@ -222,12 +222,12 @@ class Entity{
 			vely += accy;
 			leftx += velx;
 			topy += vely;
-			if ((leftx+width)>master.screen_x){
-				leftx = master.screen_x-width;
+			if ((leftx+width)>(*master).screen_x){
+				leftx = (*master).screen_x-width;
 				velx = -velx;
 			}
-			if ((topy+height)>master.screen_y){
-				topy = master.screen_y-height;
+			if ((topy+height)>(*master).screen_y){
+				topy = (*master).screen_y-height;
 				vely = -vely;
 			}
 			if ((leftx)<0){
